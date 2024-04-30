@@ -21,14 +21,11 @@ MyInfo_ = namedtuple(
 
 def my_func(path_):
     results = []
-    # Рекурсивно обходим директорию и все вложенные директории
     for dir_path, dir_names, file_names in os.walk(path_, topdown=True, onerror=None, followlinks=False):
 
-        # добавляем информацию о директории
         obj_name = os.path.basename(dir_path)
         parent_catalog = os.path.dirname(dir_path)
         results.append(MyInfo_(obj_name, None, True, parent_catalog))
-        # добавляем информацию о файлах
         for file in file_names:
 
             file_path = os.path.join(dir_path, file)
@@ -47,9 +44,6 @@ def my_func(path_):
 
 
 def create_log(path_):
-    '''
-    лог файл создается рядом с папкой к которой указан путь
-    '''
 
     log_file_name = str(os.path.basename(path_) + ".log")
     save_logpath = os.path.join(os.path.dirname(path_), log_file_name)
